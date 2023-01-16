@@ -1,4 +1,5 @@
-import sketch from './sketches/canvas'
+// import './sketches/canvas'
+import './sketches/static'
 import myScript from './scripts/myscript'
 
 // sketch()
