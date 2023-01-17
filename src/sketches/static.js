@@ -1,3 +1,7 @@
+const { lerp } = require('canvas-sketch-util/math')
+const palettes = require('nice-color-palettes')
+const random = require('canvas-sketch-util/random')
+
 const canvas = document.getElementById('canvas')
 const c = canvas.getContext('2d')
 canvas.width = innerWidth*0.9
@@ -6,10 +10,6 @@ canvas.height = innerHeight*0.9
 let height = canvas.height
 // c.globalCompositeOperation = "destination-over";
 
-function lerp( a, b, alpha ) {
-    return a + alpha * (b-a)
-   }
-    
 addEventListener('resize', () => {
     width = innerWidth*0.9
     height = innerHeight*0.9
@@ -17,7 +17,7 @@ addEventListener('resize', () => {
 })
 
 function draw() {
-    c.fillStyle = 'brown'
+    c.fillStyle = 'white'
     c.fillRect(0,0, width, height)
 
     const createGrid = () => {
@@ -32,7 +32,7 @@ function draw() {
 
                 points.push({
                     position: [ u, v ],
-                    radius: Math.random()*width*0.05
+                    radius: Math.abs(random.gaussian()*0.05*width)
                 })
             }}
             return points
