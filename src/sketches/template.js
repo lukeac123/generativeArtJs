@@ -37,6 +37,7 @@ function draw() {
             for (let y = 0; y < count; y++){
                 const u = count <= 1? 0.5 : x / (count-1)
                 const v = count <= 1? 0.5 : y / (count-1)
+                const roatation = 1
                 // (count-1) otherwise u coordinate would never = 1 causing render to be off center
                 // count <= 1? otherwise when count=1 nothing would be shown. 0.5 is middle of u/v value so renders in center
 
@@ -45,6 +46,7 @@ function draw() {
 
                 points.push({
                     position: [ u, v ],
+                    roatation, 
                     // radius: Math.abs(random.gaussian()*0.01*width),
                     radius,
                     colour: random.pick(palette)
@@ -61,10 +63,10 @@ function draw() {
 
     points.forEach(data => {
         //destructure the data object
-        const { position, radius, colour } = data
+        const { position, radius, colour, roatation } = data
         let [ u, v ] = position
 
-        console.log({u,v})
+        // console.log({u,v})
 
         //using liner interppolation to create a margin - could be helpful for art pieces
         //using padding css on html might be easier
@@ -72,22 +74,21 @@ function draw() {
         u = lerp(margin, width - margin, u)
         v = lerp(margin, height - margin, v)
 
-        console.log({u,v})
+        // console.log({u,v})
 
 
 
 
-        // c.save()
+        c.save()
         c.fillStyle = 'black';
         c.font = `${radius}px "Arial"`;
         c.translate(u,v) //translate to point u,v on the canvas
-        c.fillRect(u,v,radius,radius)
-        c.fillText("...", 0, 0); //draw the letter 
-        c.rotate(1) //rotates the canvas by 1 radian
-        // c.restore()
+        // c.fillRect(u,v,radius,radius)
+        c.fillText("A", 0, 0); //draw the letter 
+        c.rotate(roatation) //rotates the canvas by 1 radian
+        c.restore()
 
       
-
         // c.beginPath()
         // c.arc(u, v, radius, 0, Math.PI * 2, false)
         // // c.fillRect(u, v, -u, v)
@@ -97,9 +98,6 @@ function draw() {
         // // c.stroke()
         // c.fill()
         // c.closePath()
-
-       
-
      
 
 
