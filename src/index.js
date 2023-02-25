@@ -1,7 +1,11 @@
-// import './sketches/canvas'
-// import './sketches/static'
-import './sketches/squares'
-import myScript from './scripts/myscript'
+
+// import myScript from './scripts/myscript'
+// import './sketches/briannaGhey'
+
+
+
+import './sketches/canvas'
+// import './sketches/squares'
 
 // sketch()
 // const hi = myScript()
